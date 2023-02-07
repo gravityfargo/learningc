@@ -7,26 +7,32 @@ void main() {
 	int num, msbFlag, lsbFlag;
     num = 0;
 
-	/* Error checking goes here */
-    
-
-	// Check least and most significant bits using code writen below
-	lsbFlag = lsb(num);
-	msbFlag = msb(num);
-	
-	/* Edit this printf statement for part A, B and C */
-    printf("Enter a number between 0 and 65535: ");
+	printf("Enter a number between 0 and 65535: ");
 	// I mean the lab specified an unsigned int...so %u I guess lol
     scanf("%u", &num);
-	printf("lsbNum = %u\n", num);
-    printf("lsbNum = %u\n", num);
-    printf("Number = %u\n", num);
-	// %04X = a hex number with four digits padded by 0s, X capitalizes the chars
-	// 32 == 0032 so add '0x' to the string before it.
-    printf("Number in Hex is 0x%04X\n", num);
-    printf("The LSB is = %u\n", num);
-	printf("The MSB is = %u\n", num);
 
+	/* Error checking goes here */
+	if(num > 65535 || num < 0){
+		printf("Number must be <= 65535 and > 0.\n");
+	} 
+	else {
+
+		// Check least and most significant bits using code writen below
+		lsbFlag = lsb(num);
+		msbFlag = msb(num);
+		
+		/* Edit this printf statement for part A, B and C */
+
+		printf("lsbNum = %u\n", lsbFlag);
+		printf("msbNum = %u\n", msbFlag);
+		printf("Number = %u\n", num);
+		// %04X = a hex number with four digits padded by 0s, X capitalizes the chars
+		// 32 == 0032 so add '0x' to the string before it.
+		printf("Number in Hex is 0x%04X\n", num);
+		printf("The LSB is = %u\n", num);
+		printf("The MSB is = %u\n", num);
+
+	}
 
 }
 
