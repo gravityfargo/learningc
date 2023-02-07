@@ -5,6 +5,7 @@ int msb(int);
 
 void main() {
 	int num, msbFlag, lsbFlag;
+    num = 0;
 
 	/* Error checking goes here */
     
@@ -14,7 +15,14 @@ void main() {
 	msbFlag = msb(num);
 	
 	/* Edit this printf statement for part A, B and C */
-	printf("Number = %d\n", num);
+    printf("Enter a number between 0 and 65535: ");
+    // scanf();
+	printf("lsbNum = %d\n", num);
+    printf("lsbNum = %d\n", num);
+    printf("Number = %d\n", num);
+    printf("Number in Hex is \n");
+    printf("The LSB is = %d\n", num);
+
 
 }
 
@@ -29,7 +37,8 @@ int lsb(int num) {
 
 int msb(int num) {
 	int msbFlag;
-	/* Part C: Write code here to check the most significant bit of the number */
+    // if you devide a number by 2 and count the increments, that count represents the 
+    // position of the MSB
 
 
 
