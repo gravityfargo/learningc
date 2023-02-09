@@ -1,75 +1,77 @@
 #include <stdio.h>
 
-int lsb(int);
-int msb(int);
-long int convertToBinary(int);
+long convertToBinary(int);
+long mostSignificantBit(long); 
+long leastSignificantBit(long);
 
 void main()
 {
 	// ints are 16 by default
-	int num, msbFlag, lsbFlag;
-	long binNum;
-	num = 0;
+	int userInput, mostsignificantbit, leastsignificantbit;
+	long binaryNumber, msbFlag, lsbFlag;
+	userInput = 0;
 
 	printf("Enter a number between 0 and 65535: ");
-	// I mean the lab specified an unsigned int...so %u I guess lol
-	scanf("%u", &num);
+	scanf("%d", &userInput);
 
 	/* Error checking goes here */
-	if (num > 65535 || num < 0)
+	if (userInput > 65535 || userInput < 0)
 	{
+		// I dont think I need to specify unsigned anywhere since I am
+		// preventing numbers < 0 anyway
 		printf("Number must be <= 65535 and > 0.\n");
 	}
 	else
 	{
 
 		// Check least and most significant bits using code writen below
-		lsbFlag = lsb(num);
-		msbFlag = msb(num);
-		binNum = convertToBinary(num);
+		binaryNumber = convertToBinary(userInput);
+		mostsignificantbit = mostSignificantBit(binaryNumber);
+		leastsignificantbit = leastSignificantBit(binaryNumber);
+		lsbFlag = userInput & 15;
+		msbFlag = userInput >> 12;
 
-		/* Edit this printf statement for part A, B and C */
+		//  print all the fs
+		printf("lsbNum = %d\n", lsbFlag);
+		printf("msbNum = %d\n", msbFlag);
+		printf("Number = %d\n", userInput);
 
-		// printf("lsbNum = %u\n", lsbFlag);
-		// printf("msbNum = %u\n", msbFlag);
-		printf("Number = %u\n", num);
 		// %04X = a hex number with four digits padded by 0s, X capitalizes the chars
 		// 32 == 0032 so add '0x' to the string before it.
-		printf("Number in Hex is 0x%04X\n", num);
-		printf("Number in binary is = %08ld\n", binNum);
-		// printf("The MSB is = %u\n", num);
+		printf("Number in Hex is 0x%04X\n", userInput);
+
+		// %08ld 8 digit long int padded with 0s
+		printf("Number in binary is = %08ld\n", binaryNumber);
+		printf("The LSB is = %d\n", leastsignificantbit);
+		printf("The MSB is = %d\n", mostsignificantbit);
 	}
 }
 
-int lsb(int num)
+long convertToBinary(int userInput)
 {
-	int lsbFlag;
+	long localbinaryNumber = 0;
+	long remainder, temp = 1;
 
-	return lsbFlag;
-}
-
-int msb(int num)
-{
-	int msbFlag;
-	// if you devide a number by 2 and count the increments, that count represents the
-	// position of the MSB
-
-	return msbFlag;
-}
-
-long int convertToBinary(int num)
-{
+	while (userInput != 0)
 	{
-		long binarynum = 0;
-		long remainder, temp = 1;
-
-		while (num != 0)
-		{
-			remainder = num % 2;
-			num = num / 2;
-			binarynum = binarynum + remainder * temp;
-			temp = temp * 10;
-		}
-		return binarynum;
+		remainder = userInput % 2;
+		userInput = userInput / 2;
+		localbinaryNumber = localbinaryNumber + remainder * temp;
+		temp = temp * 10;
 	}
+	return localbinaryNumber;
+}
+
+long mostSignificantBit(long binaryNumber)
+{
+	while(binaryNumber >= 10)
+	{
+		binaryNumber = binaryNumber / 10;
+	}
+	return binaryNumber;
+}
+
+long leastSignificantBit(long binaryNumber)
+{
+	return binaryNumber % 10;
 }
