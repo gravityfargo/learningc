@@ -2,10 +2,13 @@
 
 int lsb(int);
 int msb(int);
+long int convertToBinary(int);
 
 void main()
 {
-	int num, msbFlag, lsbFlag, binNum;
+	// ints are 16 by default
+	int num, msbFlag, lsbFlag;
+	long binNum;
 	num = 0;
 
 	printf("Enter a number between 0 and 65535: ");
@@ -33,7 +36,7 @@ void main()
 		// %04X = a hex number with four digits padded by 0s, X capitalizes the chars
 		// 32 == 0032 so add '0x' to the string before it.
 		printf("Number in Hex is 0x%04X\n", num);
-		printf("Number in binary is = %d\n", binNum);
+		printf("Number in binary is = %08ld\n", binNum);
 		// printf("The MSB is = %u\n", num);
 	}
 }
@@ -54,11 +57,11 @@ int msb(int num)
 	return msbFlag;
 }
 
-int convertToBinary(int num)
+long int convertToBinary(int num)
 {
 	{
-		int binarynum = 0;
-		int remainder, temp = 1;
+		long binarynum = 0;
+		long remainder, temp = 1;
 
 		while (num != 0)
 		{
